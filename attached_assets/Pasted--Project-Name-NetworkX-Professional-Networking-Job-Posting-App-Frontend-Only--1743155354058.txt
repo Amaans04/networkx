@@ -1,0 +1,112 @@
+**Project Name:** NetworkX - Professional Networking & Job Posting App (Frontend Only)
+
+---
+
+### **Description:**  
+NetworkX is a frontend-only job networking platform that provides a **seamless** and **visually appealing** experience for both **job seekers** and **employers**. The app includes smooth animations, Tinder-style swiping for job matching, and real-time hiring updates.
+
+---
+
+### **Tech Stack:**  
+- **Framework:** React (Next.js recommended)
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion (for smooth card swiping and UI transitions)
+- **State Management:** Context API / useState
+
+---
+
+### **Color Theme:**  
+- **Eggshell White (#FAF5EE)** (Primary)
+- **Dark Emerald (#1D503A)** (Accent)
+
+---
+
+## **App Structure & Features**  
+
+### **1️⃣ Landing Page:**
+- Displays **two buttons**:  
+  - **"I’m Hiring"** → Redirects to Employer Page.
+  - **"I’m Looking for Jobs"** → Redirects to Job Seeker Page.
+- Uses **smooth gradient background** with Framer Motion animation.
+
+---
+
+### **2️⃣ Job Seeker Page (Employee Side):**
+#### **🔹 Job Preference Bar (Horizontal Form)**
+- Input fields: **Location, Experience, and Role**.
+- Disappears once preferences are set.
+
+#### **🔹 AI Resume Builder (Frontend Only)**
+- Non-functional UI with editable form inputs.
+- Option to **preview** a generated resume layout.
+
+#### **🔹 Job Listings**
+- **Shows jobs based on preference settings**.
+- Displays: **Title, Company, Salary, Location, Remote/In-office, Apply Button**.
+- Each job includes a **match percentage** (circular progress bar) based on user skills, experience, and location.
+
+#### **🔹 Tinder-Style Job Swiping**
+- **Swipe Right** → Shortlist job for applying.
+- **Swipe Left** → Reject job (marked red & removed from the list).
+- Swiping handled via **Framer Motion animations**.
+
+#### **🔹 Shortlisted Jobs Section**
+- Displays only right-swiped jobs.
+- Users can apply directly from here.
+
+#### **🔹 Live Hiring Updates**
+- **Real-time pop-ups** show the latest hires dynamically (Frontend only, with animated UI updates).
+
+---
+
+### **3️⃣ Employer Page (Hiring Side):**
+#### **🔹 Job Posting & Applicant Matching**
+- Employers see a **list of applicants** who applied for their jobs.
+- Each applicant has a **match percentage** (background color changes based on fit level).
+
+#### **🔹 Tinder-Style Applicant Swiping**
+- **Swipe Right** → Shortlist applicant.
+- **Swipe Left** → Reject applicant.
+- Uses **Framer Motion drag animations**.
+
+---
+
+### **4️⃣ Profile Section:**
+#### **🔹 Job Seeker Profile**
+- Users fill out **personal details, skills, experience, and upload documents**.
+- **AI Check (Frontend Only):** Simulates verification of uploaded documents.
+- Based on the profile, a **resume is generated** that employers can view.
+
+#### **🔹 Employer Profile**
+- Employers can set preferences for hiring.
+- See **applicants sorted** based on match percentage criteria.
+
+---
+
+## **Additional UI Enhancements:**
+- **Smoothest UI animations** using Framer Motion.
+- **Backgrounds with gradients** (Eggshell White & Dark Emerald theme).
+- **Dark Mode Toggle** (Optional enhancement).
+
+---
+
+### **Implementation Strategy:**
+1. **Build Page Structure** (Landing, Job Seeker, Employer, Profile Pages)
+2. **Implement UI Components** (Forms, Buttons, Cards, Swiping, Pop-ups)
+3. **Add Match Percentage Logic** (Frontend-based calculations)
+4. **Enhance with Animations** (Framer Motion for smooth UX)
+5. **Optimize and Style Everything** (Final polish and responsiveness)
+
+---
+
+### **Winning Edge for the Hackathon:**
+✅ **Modern, sleek, and highly interactive UI**.  
+✅ **Unique Tinder-style job/applicant swiping**.  
+✅ **Real-time hiring updates for engagement**.  
+✅ **AI-driven resume matching (frontend-based)**.  
+✅ **Polished animations & fluid transitions**.  
+
+---
+
+**Next Step:** Generate this project using Cursor and refine based on the final design vision! 🚀
+
