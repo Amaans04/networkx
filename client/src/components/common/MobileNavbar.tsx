@@ -66,27 +66,34 @@ const MobileNavbar = ({ type, activePage }: MobileNavbarProps) => {
     };
   }, []);
 
-  const jobSeekerLinks = [
-    { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" },
-    { name: "Jobs", path: "jobs", icon: "ri-briefcase-line" },
-    { name: "Shortlisted", path: "shortlisted", icon: "ri-heart-line" },
-    { name: "Profile", path: "profile", icon: "ri-user-line" }
-  ];
-
-  const employerLinks = [
-    { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" },
-    { name: "Applicants", path: "applicants", icon: "ri-team-line" },
-    { name: "Job Postings", path: "job-postings", icon: "ri-file-list-line" },
-    { name: "Company Profile", path: "company-profile", icon: "ri-building-line" }
-  ];
-
-  const landingLinks = [
-    { name: "Login", path: "login", icon: "ri-login-box-line" },
-    { name: "Sign Up", path: "signup", icon: "ri-user-add-line" },
-    { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" }
-  ];
-
-  const links = type === "landing" ? landingLinks : (type === "job-seeker" ? jobSeekerLinks : employerLinks);
+  // Get the appropriate links based on user type
+  let links: { name: string; path: string; icon: string }[] = [];
+  
+  if (type === "job-seeker") {
+    links = [
+      { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" },
+      { name: "Jobs", path: "jobs", icon: "ri-briefcase-line" },
+      { name: "Shortlisted", path: "shortlisted", icon: "ri-heart-line" },
+      { name: "Profile", path: "profile", icon: "ri-user-line" }
+    ];
+  } else if (type === "employer") {
+    links = [
+      { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" },
+      { name: "Applicants", path: "applicants", icon: "ri-team-line" },
+      { name: "Company Profile", path: "company-profile", icon: "ri-building-line" }
+    ];
+  } else {
+    // Landing page
+    links = [
+      { name: "Dashboard", path: "dashboard", icon: "ri-dashboard-line" },
+      { name: "Resources", path: "resources", icon: "ri-book-open-line" },
+      { name: "Skills", path: "skills", icon: "ri-tools-line" },
+      { name: "Discussions", path: "discussions", icon: "ri-discuss-line" },
+      { name: "Progress", path: "progress", icon: "ri-line-chart-line" },
+      { name: "Login", path: "login", icon: "ri-login-box-line" },
+      { name: "Sign Up", path: "signup", icon: "ri-user-add-line" }
+    ];
+  }
 
   const handleNavigation = (path: string) => {
     setIsOpen(false);
@@ -117,9 +124,21 @@ const MobileNavbar = ({ type, activePage }: MobileNavbarProps) => {
     } else if (path === "company-profile") {
       setCurrentPage("company-profile");
       setLocation("/employer/company-profile");
-    } else if (path === "job-postings") {
+    } else if (path === "job-postings" || path === "postings") {
       setCurrentPage("postings");
       setLocation("/employer/postings");
+    } else if (path === "resources") {
+      setCurrentPage("resources");
+      setLocation("/resources");
+    } else if (path === "skills") {
+      setCurrentPage("skills");
+      setLocation("/skills");
+    } else if (path === "discussions") {
+      setCurrentPage("discussions");
+      setLocation("/discussions");
+    } else if (path === "progress") {
+      setCurrentPage("progress");
+      setLocation("/progress");
     }
   };
 

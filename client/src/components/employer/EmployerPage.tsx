@@ -19,7 +19,7 @@ const EmployerPage = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [applicantBatchCount, setApplicantBatchCount] = useState(1);
   const isMobile = useIsMobile();
-  const [currentSection, setCurrentSection] = useState("matching");
+  const [currentSection, setCurrentSection] = useState("postings");
 
   // Generate a new applicant profile
   const generateRandomApplicant = (batchId: number): Applicant => {
@@ -110,17 +110,6 @@ const EmployerPage = () => {
             <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-4">
               <h2 className="text-xl sm:text-2xl font-bold font-poppins text-gray-800">Applicant Matching</h2>
               <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
-                <button
-                  onClick={() => setCurrentSection("postings")}
-                  className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex-1 sm:flex-initial ${
-                    currentSection === "postings"
-                      ? "bg-[#2A9D8F] text-white"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  <i className="ri-briefcase-line mr-1 sm:mr-2"></i>
-                  <span>Job Postings</span>
-                </button>
                 <button
                   onClick={() => setCurrentSection("matching")}
                   className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex-1 sm:flex-initial ${

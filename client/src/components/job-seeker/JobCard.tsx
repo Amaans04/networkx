@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Job } from "@/types";
 import SwipeContainer from "../common/SwipeContainer";
-import CircularProgress from "../ui/circular-progress";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface JobCardProps {
@@ -26,7 +25,7 @@ const JobCard = ({ job, onSwipeLeft, onSwipeRight }: JobCardProps) => {
       style={cardStyles}
     >
       {/* Card Header with Company Banner */}
-      <div className={`relative ${isMobile ? 'h-44' : 'h-36'} bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center`}>
+      <div className={`relative ${isMobile ? 'h-44' : 'h-36'} bg-gradient-to-r from-[#1D503A] to-[#2A9D8F] flex items-center justify-center`}>
         <div className="h-full w-full absolute top-0 left-0 bg-black bg-opacity-30"></div>
         
         {/* Company Logo */}
@@ -36,7 +35,7 @@ const JobCard = ({ job, onSwipeLeft, onSwipeRight }: JobCardProps) => {
               <img 
                 src={job.profileImage} 
                 alt="Company Logo" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-lg"
               />
             ) : (
               <i className={`${job.companyLogo} ${isMobile ? 'text-3xl' : 'text-2xl'} text-[#1D503A]`}></i>
@@ -44,15 +43,13 @@ const JobCard = ({ job, onSwipeLeft, onSwipeRight }: JobCardProps) => {
           </div>
         </div>
         
-        {/* Match Percentage - Highlighted */}
+        {/* Match Percentage */}
         <div className="absolute top-4 right-4 z-20">
           <div className="relative group">
-            <div className="bg-gradient-to-r from-[#2A9D8F] to-[#1D503A] p-1 rounded-full">
-              <CircularProgress 
-                percentage={job.matchPercentage} 
-                size={isMobile ? "lg" : "md"} 
-                className="text-white" 
-              />
+            <div className="bg-white rounded-full p-0.5 shadow-md">
+              <div className="bg-gradient-to-r from-[#2A9D8F] to-[#1D503A] rounded-full flex items-center justify-center w-12 h-12 text-white font-bold">
+                {job.matchPercentage}%
+              </div>
             </div>
             <div className="absolute right-0 mt-2 w-64 bg-gray-900 text-white text-sm rounded-lg py-2 px-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30">
               <p>Your resume matches {job.matchPercentage}% of the required skills and experience for this job profile.</p>
@@ -103,8 +100,13 @@ const JobCard = ({ job, onSwipeLeft, onSwipeRight }: JobCardProps) => {
         </div>
       </div>
       
-      {/* Adding some padding at the bottom to replace the removed swipe actions */}
-      <div className="mt-auto pb-4"></div>
+      {/* Swipe Actions Guide */}
+      <div className="mt-auto px-5 py-3 text-center border-t border-gray-100">
+        <p className="text-xs text-gray-400">
+          <span className="inline-block mr-3">👈 Swipe left to skip</span>
+          <span className="inline-block">Swipe right to save 👉</span>
+        </p>
+      </div>
     </SwipeContainer>
   );
 };

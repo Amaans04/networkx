@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { EmployerJobPosting } from "@/types";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const JobPostingSection = () => {
   const [activePostings, setActivePostings] = useState<EmployerJobPosting[]>([
@@ -8,19 +10,28 @@ const JobPostingSection = () => {
       title: "Senior Frontend Developer",
       daysAgo: 2,
       applicantsCount: 45,
-      skills: ["React", "TypeScript", "Node.js"]
+      skills: ["React", "TypeScript", "Node.js"],
+      description: "We are looking for an experienced Frontend Developer to join our growing team. The ideal candidate should have strong experience with React and TypeScript.",
+      location: "San Francisco, CA",
+      salary: "$120,000 - $150,000"
     },
     {
       title: "UX/UI Designer",
       daysAgo: 5,
       applicantsCount: 32,
-      skills: ["Figma", "UI/UX", "Prototyping"]
+      skills: ["Figma", "UI/UX", "Prototyping"],
+      description: "Join our design team to create beautiful and intuitive user experiences for our products. Strong portfolio and experience with Figma required.",
+      location: "New York, NY",
+      salary: "$90,000 - $120,000"
     },
     {
       title: "Product Manager",
       daysAgo: 1,
       applicantsCount: 28,
-      skills: ["Product Strategy", "Agile", "User Research"]
+      skills: ["Product Strategy", "Agile", "User Research"],
+      description: "Lead our product team in defining product vision, strategy, and roadmap. Experience with agile methodologies and user research is essential.",
+      location: "Remote",
+      salary: "$110,000 - $140,000"
     }
   ]);
 
@@ -32,7 +43,8 @@ const JobPostingSection = () => {
     location: "",
     type: "Full-time",
     experience: "Mid-level",
-    skills: [] as string[]
+    skills: [] as string[],
+    salary: ""
   });
 
   const handleCreatePost = () => {
@@ -41,7 +53,10 @@ const JobPostingSection = () => {
         title: newPost.title,
         daysAgo: 0,
         applicantsCount: 0,
-        skills: newPost.skills
+        skills: newPost.skills,
+        description: newPost.description,
+        location: newPost.location,
+        salary: newPost.salary
       }, ...prev]);
       setIsCreatingPost(false);
       setNewPost({
@@ -51,7 +66,8 @@ const JobPostingSection = () => {
         location: "",
         type: "Full-time",
         experience: "Mid-level",
-        skills: []
+        skills: [],
+        salary: ""
       });
     }
   };
@@ -68,13 +84,13 @@ const JobPostingSection = () => {
         <i className="ri-briefcase-line text-[#2A9D8F] mr-2"></i>
           Job Postings
       </h3>
-        <button
+        <Button
           onClick={() => setIsCreatingPost(true)}
           className="bg-[#2A9D8F] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 flex items-center"
         >
           <i className="ri-add-line mr-2"></i>
           Create New Post
-        </button>
+        </Button>
       </div>
       
       {/* Active Job Postings */}
@@ -82,25 +98,52 @@ const JobPostingSection = () => {
         {activePostings.map((posting, index) => (
           <motion.div
             key={index}
-            className="bg-gray-50 p-4 rounded-lg"
+            className="bg-gray-50 p-5 rounded-lg hover:shadow-md transition-shadow border border-gray-100"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
           >
             <div className="flex justify-between items-start mb-2">
-              <h4 className="font-medium text-gray-800">{posting.title}</h4>
-              <span className="text-xs text-gray-500">{posting.daysAgo}d ago</span>
+              <h4 className="font-medium text-gray-800 text-lg">{posting.title}</h4>
+              <Badge variant="outline" className="bg-[#2A9D8F]/10 text-[#2A9D8F] border-[#2A9D8F]/20">
+                {posting.daysAgo === 0 ? 'Today' : `${posting.daysAgo}d ago`}
+              </Badge>
             </div>
+            
+            <p className="text-gray-600 mb-3 text-sm">{posting.description}</p>
+            
             <div className="flex flex-wrap gap-2 mb-3">
               {posting.skills.map((skill, idx) => (
-                <span key={idx} className="bg-white px-2 py-1 rounded-full text-xs text-gray-600">
+                <Badge key={idx} variant="secondary" className="bg-white border border-gray-200">
                   {skill}
-                </span>
-          ))}
-        </div>
-            <div className="flex items-center text-sm text-gray-500">
-              <i className="ri-user-line mr-1"></i>
-              <span>{posting.applicantsCount} applicants</span>
+                </Badge>
+              ))}
+            </div>
+            
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex space-x-4">
+                <div className="flex items-center text-sm text-gray-500">
+                  <i className="ri-map-pin-line mr-1"></i>
+                  <span>{posting.location || "Remote"}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-500">
+                  <i className="ri-money-dollar-circle-line mr-1"></i>
+                  <span>{posting.salary || "Competitive"}</span>
+                </div>
+              </div>
+              <div className="flex items-center text-sm text-[#2A9D8F] font-medium">
+                <i className="ri-user-line mr-1"></i>
+                <span>{posting.applicantsCount} applicants</span>
+              </div>
+            </div>
+            
+            <div className="flex mt-4 pt-3 border-t border-gray-200">
+              <Button variant="outline" size="sm" className="mr-2 border-[#2A9D8F] text-[#2A9D8F] hover:bg-[#2A9D8F]/10">
+                <i className="ri-edit-line mr-1"></i> Edit
+              </Button>
+              <Button variant="outline" size="sm" className="border-[#2A9D8F] text-[#2A9D8F] hover:bg-[#2A9D8F]/10">
+                <i className="ri-user-search-line mr-1"></i> View Applicants
+              </Button>
             </div>
           </motion.div>
         ))}
@@ -195,6 +238,19 @@ const JobPostingSection = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Salary Range
+                </label>
+                <input
+                  type="text"
+                  value={newPost.salary}
+                  onChange={(e) => setNewPost(prev => ({ ...prev, salary: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2A9D8F] focus:border-[#2A9D8F]"
+                  placeholder="e.g. $100,000 - $130,000"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Required Skills
                 </label>
                 <input
@@ -214,12 +270,12 @@ const JobPostingSection = () => {
               >
                 Cancel
               </button>
-              <button
+              <Button
                 onClick={handleCreatePost}
                 className="bg-[#2A9D8F] text-white px-4 py-2 rounded-lg hover:bg-opacity-90"
               >
                 Create Post
-              </button>
+              </Button>
             </div>
           </motion.div>
       </div>

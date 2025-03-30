@@ -5,6 +5,8 @@ import Header from "@/components/common/Header";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLocation } from "wouter";
 import Footer from "../common/Footer";
+import { Button } from "@/components/ui/button";
+import { ChevronRight, BarChart, User, Video } from "lucide-react";
 
 const Dashboard = () => {
   const { currentPage, setCurrentPage } = useAppContext();
@@ -162,68 +164,203 @@ const Dashboard = () => {
           </motion.div>
         </motion.section>
         
-        {/* AI Career Growth Section */}
+        {/* Connection Building Features Section - Now moved up for more prominence */}
         <motion.section 
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Boost Your Career with AI</h2>
+          <h2 className="text-4xl font-bold text-[#1D503A] mb-4 text-center">Connect, Grow & Network</h2>
+          <p className="text-xl text-gray-700 mb-8 text-center max-w-3xl mx-auto">
+            Unlock powerful features to build your professional network, showcase your skills, and accelerate your career growth.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Resources & Idea Hub */}
+            <motion.div 
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+              transition={{ duration: 0.3 }}
+              onClick={() => {
+                setCurrentPage("resources");
+                setLocation("/resources");
+              }}
+            >
+              <div className="h-32 bg-gradient-to-r from-[#1D503A] to-[#2A9D8F] flex items-center justify-center">
+                <i className="ri-book-open-line text-5xl text-white opacity-80"></i>
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Resources & Idea Hub</h3>
+                <p className="text-gray-600 text-sm mb-4">Discover and share industry resources, tools, and innovative ideas.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[#2A9D8F] font-medium">200+ resources</span>
+                  <button className="text-[#1D503A] hover:underline text-sm flex items-center">
+                    Explore <i className="ri-arrow-right-s-line ml-1"></i>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Skills & Persona */}
+            <motion.div 
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+              transition={{ duration: 0.3 }}
+              onClick={() => {
+                setCurrentPage("skills");
+                setLocation("/skills");
+              }}
+            >
+              <div className="h-32 bg-gradient-to-r from-[#2A9D8F] to-[#E9C46A] flex items-center justify-center">
+                <i className="ri-tools-line text-5xl text-white opacity-80"></i>
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Skills & Persona</h3>
+                <p className="text-gray-600 text-sm mb-4">Build your professional persona and discover skills that match your career goals.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[#2A9D8F] font-medium">AI-powered matching</span>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentPage("skills");
+                      setLocation("/skills");
+                    }}
+                    className="text-[#1D503A] hover:underline text-sm flex items-center"
+                  >
+                    Discover <i className="ri-arrow-right-s-line ml-1"></i>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Discussions */}
+            <motion.div 
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+              transition={{ duration: 0.3 }}
+              onClick={() => {
+                setCurrentPage("discussions");
+                setLocation("/discussions");
+              }}
+            >
+              <div className="h-32 bg-gradient-to-r from-[#E9C46A] to-[#F4A261] flex items-center justify-center">
+                <i className="ri-discuss-line text-5xl text-white opacity-80"></i>
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Industry Discussions</h3>
+                <p className="text-gray-600 text-sm mb-4">Join conversations about workplace culture, career growth, and industry trends.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[#2A9D8F] font-medium">Active discussions</span>
+                  <button className="text-[#1D503A] hover:underline text-sm flex items-center">
+                    Join <i className="ri-arrow-right-s-line ml-1"></i>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Progress Tracking */}
+            <motion.div 
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
+              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+              transition={{ duration: 0.3 }}
+              onClick={() => {
+                setCurrentPage("progress");
+                setLocation("/progress");
+              }}
+            >
+              <div className="h-32 bg-gradient-to-r from-[#F4A261] to-[#E76F51] flex items-center justify-center">
+                <i className="ri-line-chart-line text-5xl text-white opacity-80"></i>
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-bold text-gray-800 mb-2">Progress Tracking</h3>
+                <p className="text-gray-600 text-sm mb-4">Track your professional growth, earn badges, and benchmark against peers.</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[#2A9D8F] font-medium">Set growth goals</span>
+                  <button className="text-[#1D503A] hover:underline text-sm flex items-center">
+                    Track <i className="ri-arrow-right-s-line ml-1"></i>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+        
+        {/* AI Career Growth Section */}
+        <motion.section 
+          className="mt-12 mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1D503A] text-center mb-12">Boost Your Career With AI</h2>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Card 1: Resume Builder */}
-            <motion.div 
-              className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
-              transition={{ duration: 0.3 }}
+            {/* Build Your Resume Card */}
+            <div 
+              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg h-[380px]"
+              onClick={() => {
+                setCurrentPage("profile");
+                setLocation("/profile");
+              }}
             >
-              <div className="h-40 bg-gradient-to-r from-[#1D503A] to-[#2A9D8F] flex items-center justify-center">
-                <i className="ri-file-text-line text-7xl text-white opacity-80"></i>
+              <div className="h-28 bg-gradient-to-r from-[#1D503A] to-[#2A9D8F] flex items-center justify-center">
+                <i className="ri-file-list-3-line text-5xl text-white"></i>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Build Your Resume with AI</h3>
-                <p className="text-gray-600 mb-4">Create a professional resume tailored for your dream job with our AI-powered resume builder.</p>
-                <button className="w-full bg-[#1D503A] text-white py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all">
-                  Get Started
-                </button>
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Build Your Resume With AI</h3>
+                <p className="text-gray-600 mb-6">
+                  Create a professional resume in minutes with our AI tools. Highlight your skills, experience, and achievements to stand out to employers.
+                </p>
+                <Button className="w-full bg-[#1D503A] hover:bg-[#1D503A]/90 text-white">
+                  Build Resume
+                </Button>
               </div>
-            </motion.div>
-            
-            {/* Card 2: Learn Skills */}
-            <motion.div 
-              className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
-              transition={{ duration: 0.3 }}
+            </div>
+
+            {/* Strengthen Your Profile Card - pushed up */}
+            <div 
+              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg h-[380px] -mt-4"
+              onClick={() => {
+                setCurrentPage("profile");
+                setLocation("/profile");
+              }}
             >
-              <div className="h-40 bg-gradient-to-r from-[#2A9D8F] to-[#E9C46A] flex items-center justify-center">
-                <i className="ri-book-open-line text-7xl text-white opacity-80"></i>
+              <div className="h-28 bg-gradient-to-r from-[#2A9D8F] to-[#E9C46A] flex items-center justify-center">
+                <User className="h-14 w-14 text-white" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Learn Trending Skills</h3>
-                <p className="text-gray-600 mb-4">Discover and master the most in-demand skills in the job market to stay ahead of the competition.</p>
-                <button className="w-full bg-[#2A9D8F] text-white py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all">
-                  Explore Skills
-                </button>
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Strengthen Your Profile</h3>
+                <p className="text-gray-600 mb-6">
+                  Complete your profile to boost visibility with potential employers. Our AI tools help highlight your strengths and identify growth areas.
+                </p>
+                <Button className="w-full bg-[#1D503A] hover:bg-[#1D503A]/90 text-white">
+                  Update Profile
+                </Button>
               </div>
-            </motion.div>
-            
-            {/* Card 3: Mock Interview */}
-            <motion.div 
-              className="bg-white rounded-2xl shadow-lg overflow-hidden"
-              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
-              transition={{ duration: 0.3 }}
+            </div>
+
+            {/* Practice Interviews Card */}
+            <div 
+              className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg h-[380px]"
+              onClick={() => {
+                setCurrentPage("mock-interview");
+                setLocation("/mock-interview");
+              }}
             >
-              <div className="h-40 bg-gradient-to-r from-[#E9C46A] to-[#F4A261] flex items-center justify-center">
-                <i className="ri-mic-line text-7xl text-white opacity-80"></i>
+              <div className="h-28 bg-gradient-to-r from-[#E9C46A] to-[#F4A261] flex items-center justify-center">
+                <i className="ri-video-line text-5xl text-white"></i>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Attend Mock Interviews</h3>
-                <p className="text-gray-600 mb-4">Practice makes perfect. Prepare for your real interviews with our AI-powered mock interview system.</p>
-                <button className="w-full bg-[#E9C46A] text-[#1D503A] py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all">
-                  Start Practicing
-                </button>
+                <h3 className="text-lg font-bold text-gray-800 mb-3">Practice Interviews</h3>
+                <p className="text-gray-600 mb-6">
+                  Prepare for real interviews with AI-powered mock interview sessions. Get instant feedback and improve your interview skills with each practice.
+                </p>
+                <Button className="w-full bg-[#1D503A] hover:bg-[#1D503A]/90 text-white">
+                  Start Practice
+                </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </motion.section>
         

@@ -28,14 +28,17 @@ const Header = ({ type, activePage }: HeaderProps) => {
   const employerLinks = [
     { name: "Dashboard", path: "dashboard" },
     { name: "Applicants", path: "applicants" },
-    { name: "Job Postings", path: "postings" },
     { name: "Company Profile", path: "company-profile" }
   ];
 
   const landingLinks = [
+    { name: "Dashboard", path: "dashboard" },
+    { name: "Resources", path: "resources" },
+    { name: "Skills", path: "skills" },
+    { name: "Discussions", path: "discussions" },
+    { name: "Progress", path: "progress" },
     { name: "Login", path: "login" },
-    { name: "Sign Up", path: "signup" },
-    { name: "Dashboard", path: "dashboard" }
+    { name: "Sign Up", path: "signup" }
   ];
 
   const links = type === "landing" ? landingLinks : (type === "job-seeker" ? jobSeekerLinks : employerLinks);
@@ -99,6 +102,18 @@ const Header = ({ type, activePage }: HeaderProps) => {
                   } else if (link.path === "signup") {
                     setCurrentPage("signup");
                     setLocation("/signup");
+                  } else if (link.path === "resources") {
+                    setCurrentPage("resources");
+                    setLocation("/resources");
+                  } else if (link.path === "skills") {
+                    setCurrentPage("skills");
+                    setLocation("/skills");
+                  } else if (link.path === "discussions") {
+                    setCurrentPage("discussions");
+                    setLocation("/discussions");
+                  } else if (link.path === "progress") {
+                    setCurrentPage("progress");
+                    setLocation("/progress");
                   }
                 }}
               >

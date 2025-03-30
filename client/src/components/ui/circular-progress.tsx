@@ -1,68 +1,89 @@
 import React from 'react';
 
+// Define size map for named sizes
+const SIZE_MAP = {
+  sm: 32,
+  md: 48,
+  lg: 64
+};
+
 interface CircularProgressProps {
-  percentage: number;
-  size?: 'sm' | 'md' | 'lg';
+  value?: number;
+  percentage?: number; // Backward compatibility
+  size?: number | 'sm' | 'md' | 'lg';
+  strokeWidth?: number;
+  maxValue?: number;
+  color?: string;
+  label?: React.ReactNode;
   className?: string;
 }
 
-const CircularProgress = ({ 
-  percentage, 
-  size = 'md', 
-  className = 'text-[#2A9D8F]' 
-}: CircularProgressProps) => {
-  // Size configurations
-  const dimensions = {
-    sm: { size: 40, strokeWidth: 3, fontSize: 'text-xs' },
-    md: { size: 50, strokeWidth: 4, fontSize: 'text-sm' },
-    lg: { size: 70, strokeWidth: 5, fontSize: 'text-base' },
-  };
-
-  const { size: circleSize, strokeWidth, fontSize } = dimensions[size];
+const CircularProgress: React.FC<CircularProgressProps> = ({
+  value,
+  percentage, // For backward compatibility
+  size = 48,
+  strokeWidth = 4,
+  maxValue = 100,
+  color = "#3b82f6",
+  label,
+  className = ""
+}) => {
+  // Handle string sizes
+  const actualSize = typeof size === 'string' ? SIZE_MAP[size] : size;
+  
+  // Handle both value and percentage props (for backward compatibility)
+  const normalizedValue = Math.min(Math.max(percentage !== undefined ? percentage : (value || 0), 0), maxValue);
+  const percentageValue = (normalizedValue / maxValue) * 100;
   
   // Calculate circle properties
-  const radius = (circleSize - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
+  const radius = (actualSize - strokeWidth) / 2;
+  const circumference = radius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (percentageValue / 100) * circumference;
   
   return (
-    <div className="relative inline-flex items-center justify-center">
-      <svg
-        width={circleSize}
-        height={circleSize}
-        viewBox={`0 0 ${circleSize} ${circleSize}`}
-        className={className}
-      >
-        {/* Background circle */}
+    <div className={`relative ${className}`} style={{ width: actualSize, height: actualSize }}>
+      {/* Background circle */}
+      <svg width={actualSize} height={actualSize} viewBox={`0 0 ${actualSize} ${actualSize}`} className="rotate-[-90deg]">
         <circle
-          cx={circleSize / 2}
-          cy={circleSize / 2}
+          cx={actualSize / 2}
+          cy={actualSize / 2}
           r={radius}
           fill="none"
-          stroke="currentColor"
+          stroke="#e5e7eb"
           strokeWidth={strokeWidth}
-          opacity={0.2}
         />
         
         {/* Progress circle */}
         <circle
-          cx={circleSize / 2}
-          cy={circleSize / 2}
+          cx={actualSize / 2}
+          cy={actualSize / 2}
           r={radius}
           fill="none"
-          stroke="currentColor"
+          stroke={color}
           strokeWidth={strokeWidth}
-          strokeLinecap="round"
           strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          transform={`rotate(-90 ${circleSize / 2} ${circleSize / 2})`}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
         />
       </svg>
       
-      {/* Percentage text */}
-      <div className={`absolute ${fontSize} font-bold`}>
-        {percentage}%
-      </div>
+      {/* Label in the center */}
+      {(label || percentage !== undefined || value !== undefined) && (
+        <div 
+          className="absolute inset-0 flex items-center justify-center text-center"
+          style={{ fontSize: `${actualSize / 5}px` }}
+        >
+          {label ? (
+            typeof label === 'string' ? (
+              <span className="font-medium">{label}</span>
+            ) : (
+              label
+            )
+          ) : (
+            <span className="font-medium">{Math.round(normalizedValue)}%</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

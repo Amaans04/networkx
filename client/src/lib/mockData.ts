@@ -217,7 +217,104 @@ export const profile: Profile = {
     completed: ["Basic Info", "About Me", "Skills", "Experience", "Job Preferences"],
     pending: ["Resume"]
   },
-  profileImage: null
+  profileImage: null,
+  badges: [
+    {
+      id: "b1",
+      name: "Profile Pro",
+      icon: "ri-profile-line",
+      description: "Completed 80% of your profile",
+      earned: true,
+      earnedDate: "Jan 15, 2023"
+    },
+    {
+      id: "b2",
+      name: "Skill Master",
+      icon: "ri-tools-line",
+      description: "Added 5+ relevant skills",
+      earned: true,
+      earnedDate: "Feb 3, 2023"
+    },
+    {
+      id: "b3",
+      name: "Networking Novice",
+      icon: "ri-user-shared-line",
+      description: "Connected with 10+ professionals",
+      earned: true,
+      earnedDate: "Mar 12, 2023"
+    },
+    {
+      id: "b4",
+      name: "Content Creator",
+      icon: "ri-article-line",
+      description: "Shared 3+ resources with the community",
+      earned: false
+    },
+    {
+      id: "b5",
+      name: "Top Contributor",
+      icon: "ri-medal-line",
+      description: "Among top 10% active community members",
+      earned: false
+    }
+  ],
+  careerHighlights: [
+    {
+      id: "ch1",
+      title: "Led Frontend Redesign",
+      description: "Spearheaded complete redesign of company's flagship product",
+      year: "2022"
+    },
+    {
+      id: "ch2",
+      title: "Reduced Load Time by 40%",
+      description: "Optimized rendering performance and bundle size",
+      year: "2021"
+    },
+    {
+      id: "ch3",
+      title: "Open Source Contribution",
+      description: "Key contributor to popular React component library",
+      year: "2020"
+    }
+  ],
+  profileInsights: {
+    careerFitScore: {
+      score: 92,
+      industry: "Technology",
+      topMatches: [
+        { role: "Senior Frontend Developer", score: 97 },
+        { role: "Frontend Architect", score: 85 },
+        { role: "Technical Lead", score: 80 }
+      ]
+    },
+    recommendations: [
+      {
+        id: "r1",
+        type: "skill",
+        title: "GraphQL",
+        reason: "In high demand for frontend roles - 65% of similar profiles have this skill"
+      },
+      {
+        id: "r2",
+        type: "certification",
+        title: "AWS Certified Developer",
+        reason: "Complements your full-stack skills and increases salary potential by 12%"
+      },
+      {
+        id: "r3",
+        type: "connection",
+        title: "Connect with Tech Leaders",
+        reason: "93% of successful job seekers in your field have connections with tech leaders"
+      }
+    ],
+    endorsements: [
+      { skill: "React", count: 15 },
+      { skill: "TypeScript", count: 12 },
+      { skill: "Next.js", count: 8 },
+      { skill: "Tailwind CSS", count: 6 }
+    ]
+  }
 };
 
 export const jobPosting: EmployerJobPosting = {
@@ -226,3 +323,102 @@ export const jobPosting: EmployerJobPosting = {
   applicantsCount: 47,
   skills: ["React", "TypeScript", "Responsive Design", "CSS/SASS"]
 };
+
+export const mockInterviews = [
+  {
+    id: "interview1",
+    title: "Frontend Developer Interview",
+    description: "Practice common React and JavaScript questions for frontend roles",
+    category: "technical",
+    difficulty: "intermediate" as "beginner" | "intermediate" | "advanced",
+    duration: 30,
+    dateCreated: new Date().toISOString(),
+    questions: [
+      { 
+        id: "q1", 
+        question: "Explain the concept of virtual DOM in React and why it's important.",
+        category: "react",
+        tips: ["Focus on performance benefits", "Explain the reconciliation process"],
+        keypoints: ["Tree diffing algorithm", "Batch updates", "Minimized DOM operations"]
+      },
+      { 
+        id: "q2", 
+        question: "What are closures in JavaScript and how would you use them?",
+        category: "javascript",
+        tips: ["Provide a practical example", "Explain lexical scoping"],
+        keypoints: ["Function that references variables from outer scope", "Data encapsulation", "Memory considerations"]
+      },
+      { 
+        id: "q3", 
+        question: "Describe the difference between controlled and uncontrolled components in React.",
+        category: "react",
+        tips: ["Discuss form handling", "Mention refs for uncontrolled components"],
+        keypoints: ["State management", "Single source of truth", "Direct DOM access"]
+      }
+    ]
+  },
+  {
+    id: "interview2",
+    title: "Behavioral Interview",
+    description: "Practice answering questions about your work experience and collaboration skills",
+    category: "behavioral",
+    difficulty: "beginner" as "beginner" | "intermediate" | "advanced",
+    duration: 25,
+    dateCreated: new Date().toISOString(),
+    questions: [
+      { 
+        id: "q1", 
+        question: "Tell me about a challenging project you worked on and how you overcame obstacles.",
+        category: "experience",
+        tips: ["Use the STAR method", "Focus on your specific contributions"],
+        keypoints: ["Problem definition", "Action steps", "Measurable results"]
+      },
+      { 
+        id: "q2", 
+        question: "How do you handle conflicts in a team environment?",
+        category: "teamwork",
+        tips: ["Provide a specific example", "Highlight communication skills"],
+        keypoints: ["Active listening", "Finding common ground", "Constructive resolution"]
+      },
+      { 
+        id: "q3", 
+        question: "Describe a situation when you had to meet a tight deadline and how you managed it.",
+        category: "work-style",
+        tips: ["Show your prioritization skills", "Discuss work-life balance"],
+        keypoints: ["Time management", "Delegation", "Communication with stakeholders"]
+      }
+    ]
+  },
+  {
+    id: "interview3",
+    title: "System Design Challenge",
+    description: "Practice designing scalable systems and architecture",
+    category: "system design",
+    difficulty: "advanced" as "beginner" | "intermediate" | "advanced",
+    duration: 45,
+    dateCreated: new Date().toISOString(),
+    questions: [
+      { 
+        id: "q1", 
+        question: "Design a URL shortening service like bit.ly.",
+        category: "architecture",
+        tips: ["Consider scale and performance", "Discuss database choices"],
+        keypoints: ["Hashing algorithms", "Caching strategy", "Analytics capabilities"]
+      },
+      { 
+        id: "q2", 
+        question: "How would you design Twitter's backend?",
+        category: "architecture",
+        tips: ["Focus on scalability challenges", "Consider real-time aspects"],
+        keypoints: ["Feed generation", "Notification system", "Data partitioning"]
+      },
+      { 
+        id: "q3", 
+        question: "Design a distributed cache system.",
+        category: "distributed-systems",
+        tips: ["Discuss consistency models", "Consider failure scenarios"],
+        keypoints: ["Eviction policies", "Sharding strategy", "Replication mechanism"]
+      }
+    ]
+  }
+];

@@ -18,7 +18,8 @@ const SwipeContainer = ({
 }: SwipeContainerProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const x = useMotionValue(0);
-  const scale = useTransform(x, [-250, 0, 250], [0.85, 1, 0.85]);
+  const rotate = useTransform(x, [-200, 0, 200], [-10, 0, 10]);
+  const scale = useTransform(x, [-250, 0, 250], [0.95, 1, 0.95]);
   const boxShadow = useTransform(
     x,
     [-250, -150, 0, 150, 250],
@@ -35,13 +36,17 @@ const SwipeContainer = ({
     x,
     [-250, -150, 0, 150, 250],
     [
-      "rgba(220, 53, 69, 0.1)",
-      "rgba(220, 53, 69, 0.05)",
       "rgba(255, 255, 255, 1)",
-      "rgba(40, 167, 69, 0.05)",
-      "rgba(40, 167, 69, 0.1)"
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)"
     ]
   );
+
+  // Swipe indicator elements
+  const leftOpacity = useTransform(x, [-100, -50, 0], [1, 0, 0]);
+  const rightOpacity = useTransform(x, [0, 50, 100], [0, 0, 1]);
 
   const handleDragStart = () => {
     setIsDragging(true);
@@ -65,35 +70,45 @@ const SwipeContainer = ({
   };
 
   return (
-    <motion.div
-      className={`${className} w-full`}
-      style={{
-        x,
-        scale,
-        boxShadow,
-        background,
-        cursor: isDragging ? "grabbing" : "grab",
-        userSelect: "none",
-        touchAction: "pan-y",
-        ...style
-      }}
-      drag="x"
-      dragElastic={0.7}
-      dragConstraints={{ left: 0, right: 0 }}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-      whileTap={{ cursor: "grabbing" }}
-    >
-      {children}
-      <div className="absolute bottom-0 left-0 right-0 flex justify-between px-6 py-3 opacity-0 swipe-overlay">
-        <div className="bg-red-500 bg-opacity-80 text-white rounded-full p-2">
+    <div className="relative">
+      <motion.div
+        className={`${className} w-full relative`}
+        style={{
+          x,
+          rotate,
+          scale,
+          boxShadow,
+          background,
+          cursor: isDragging ? "grabbing" : "grab",
+          userSelect: "none",
+          touchAction: "pan-y",
+          ...style
+        }}
+        drag="x"
+        dragElastic={0.7}
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        whileTap={{ cursor: "grabbing" }}
+      >
+        {children}
+        
+        {/* Swipe Indicators */}
+        <motion.div 
+          className="absolute top-1/2 left-6 -translate-y-1/2 bg-red-500 bg-opacity-90 text-white rounded-full p-3" 
+          style={{ opacity: leftOpacity }}
+        >
           <i className="ri-close-line text-xl"></i>
-        </div>
-        <div className="bg-green-500 bg-opacity-80 text-white rounded-full p-2">
-          <i className="ri-check-line text-xl"></i>
-        </div>
-      </div>
-    </motion.div>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-1/2 right-6 -translate-y-1/2 bg-green-500 bg-opacity-90 text-white rounded-full p-3" 
+          style={{ opacity: rightOpacity }}
+        >
+          <i className="ri-heart-line text-xl"></i>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
