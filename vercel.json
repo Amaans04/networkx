@@ -10,9 +10,10 @@
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "client/$1"
-    }
+    { "src": "/networkx-favicon.png", "dest": "/networkx-favicon.png" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/site.webmanifest", "dest": "/site.webmanifest" },
+    { "src": "/icons/(.*)", "dest": "/icons/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 } 
